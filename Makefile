@@ -49,3 +49,9 @@ symfony:
 	php composer.phar
 	composer update
 	$(SYMFONY) check:requirements
+prod:
+	$(COMPOSER) dump-env prod
+init-on-sever:
+	$(MAKE) db-create
+	$(MAKE) reload-migrations
+	$(MAKE) save
