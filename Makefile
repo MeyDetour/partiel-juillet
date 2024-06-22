@@ -61,3 +61,12 @@ init-on-server:
 	$(MAKE) db-create
 	$(MAKE) reload-migrations
 	$(MAKE) save
+
+
+php-version:
+	sudo update-alternatives --install /usr/bin/php php /usr/bin/php8.3 1
+	sudo update-alternatives --config php
+	symfony local:php:list
+	sudo a2dismod php8.1
+	sudo a2enmod php8.3
+	sudo systemctl restart apache2
