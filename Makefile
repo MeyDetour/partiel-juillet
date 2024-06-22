@@ -51,7 +51,7 @@ symfony:
 	$(SYMFONY) check:requirements
 prod:
 	$(COMPOSER) dump-env prod
-init-on-sever:
+init-on-server:
 	$(MAKE) db-create
 	$(MAKE) reload-migrations
 	$(MAKE) save
