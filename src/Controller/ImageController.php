@@ -17,6 +17,9 @@ class ImageController extends AbstractController
     #[Route('/image', name: 'app_image')]
     public function index(ImageRepository $imageRepository): Response
     {
+        if(!$this->getUser()){
+            return  $this->redirectToRoute('app_login');
+        }
         return $this->render('image/index.html.twig', [
             'images'=>$imageRepository->findAll()
         ]);
@@ -24,6 +27,9 @@ class ImageController extends AbstractController
     #[Route('/image/new', name: 'add_image')]
     public function add(Request $request , EntityManagerInterface $manager): Response
     {
+        if(!$this->getUser()){
+            return  $this->redirectToRoute('app_login');
+        }
         $image = new Image();
         $form = $this->createForm(\App\Form\ImageType::class,$image);
         $form->handleRequest($request);
@@ -39,6 +45,9 @@ class ImageController extends AbstractController
     #[Route('/image/remove/{id}', name: 'remove_image')]
     public function remove(Image $image, EntityManagerInterface $manager): Response
     {
+        if(!$this->getUser()){
+            return  $this->redirectToRoute('app_login');
+        }
         $manager->remove($image);
         $manager->flush();
         return  $this->redirectToRoute('app_image');
