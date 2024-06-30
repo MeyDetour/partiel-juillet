@@ -111,7 +111,7 @@ install-composer:
 
 install-webpack:
 	$(COMPOSER) require symfony/webpack-encore-bundle
-
+	npm install
 	#import 'bootstrap/dist/css/bootstrap.min.css'; {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}   {% block javascripts %}{{ encore_entry_script_tags('app') }}  {% endblock %}
 
 install-vich:
