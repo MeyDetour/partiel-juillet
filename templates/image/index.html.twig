@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ImageController!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('add_image') }}">Ajouter une image</a>
+    <hr>
+    {% for image in images %}
+        <img src="{{ vich_uploader_asset(image) | imagine_filter('projet') }}"  alt="{{image.imageName}}">
+        <a href="{{ path('remove_image',{'id':image.id}) }}">Supprimer</a>
+    {% endfor %}
+{% endblock %}
