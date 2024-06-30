@@ -56,6 +56,7 @@ liip-cache:
 
 
 ## -------- JWT --------
+jwt-key:
 	$(SYMFONY_CONSOLE) lexik:jwt:generate-keypair
 
 ## -------- database --------
@@ -110,11 +111,7 @@ install-composer:
 
 install-webpack:
 	$(COMPOSER) require symfony/webpack-encore-bundle
-	sudo npm install -g yarn
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-	source ~/.nvm/nvm.sh
-	nvm install 16.10.0
-	nvm use 16.10.0
+
 	#import 'bootstrap/dist/css/bootstrap.min.css'; {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}   {% block javascripts %}{{ encore_entry_script_tags('app') }}  {% endblock %}
 
 install-vich:
@@ -122,17 +119,9 @@ install-vich:
 install-liip:
 	$(COMPOSER) require liip/imagine-bundle
 
-install-bootstrap:
-	composer require symfony/webpack-encore-bundle
-	npm install
+install-dropzone:
+	$(COMPOSER) require symfony/ux-dropzone
 
-node-20:
-	sudo npm install -g n
-	sudo n stable
-	node -v
-
-	#sudo ln -sf /usr/local/n/versions/node/20.15.0/bin/node /usr/bin/node
-    #sudo ln -sf /usr/local/n/versions/node/20.15.0/bin/npm /usr/bin/npm
 # liip_imagine:
 #     driver: "gd"
 #     resolvers:
