@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    /**
+     * @var Collection<int, PayMethode>
+     */
+    #[ORM\OneToMany(targetEntity: PayMethode::class, mappedBy: 'owner')]
+    private Collection $payMethodes;
+
+    public function __construct()
+    {
+        $this->payMethodes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +133,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PayMethode>
+     */
+    public function getPayMethodes(): Collection
+    {
+        return $this->payMethodes;
+    }
+
+    public function addPayMethode(PayMethode $payMethode): static
+    {
+        if (!$this->payMethodes->contains($payMethode)) {
+            $this->payMethodes->add($payMethode);
+            $payMethode->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removePayMethode(PayMethode $payMethode): static
+    {
+        if ($this->payMethodes->removeElement($payMethode)) {
+            // set the owning side to null (unless already changed)
+            if ($payMethode->getOwner() === $this) {
+                $payMethode->setOwner(null);
+            }
+        }
 
         return $this;
     }

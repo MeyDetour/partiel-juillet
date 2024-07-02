@@ -1,0 +1,9 @@
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        {{ app.user.email }}
+    {% endif %}
+{% endblock %}

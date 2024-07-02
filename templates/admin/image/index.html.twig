@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}Hello ImageController!{% endblock %}
+{% block title %}Ajoutez une image{% endblock %}
 
 {% block body %}
     <a href="{{ path('add_image') }}">Ajouter une image</a>
@@ -10,3 +10,5 @@
         <a href="{{ path('remove_image',{'id':image.id}) }}">Supprimer</a>
     {% endfor %}
 {% endblock %}
+
+

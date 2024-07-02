@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Film;
 use App\Entity\Image;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityManager;
@@ -11,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+#[Route('/admin')]
 
 class ImageController extends AbstractController
 {
@@ -20,7 +22,7 @@ class ImageController extends AbstractController
         if(!$this->getUser()){
             return  $this->redirectToRoute('app_login');
         }
-        return $this->render('image/index.html.twig', [
+        return $this->render('admin/image/index.html.twig', [
             'images'=>$imageRepository->findAll()
         ]);
     }
@@ -38,7 +40,25 @@ class ImageController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('app_image');
         }
-        return $this->render('image/add.html.twig', [
+        return $this->render('admin/image/add.html.twig', [
+            'form'=>$form->createView()
+        ]);
+    } #[Route('/image/film/{id}new', name: 'admin_add_image_film')]
+    public function addToFilm(Request $request , Film $film ,EntityManagerInterface $manager): Response
+    {
+        if(!$this->getUser()){
+            return  $this->redirectToRoute('app_login');
+        }
+        $image = new Image();
+        $form = $this->createForm(\App\Form\ImageType::class,$image);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $image->setFilm($film);
+            $manager->persist($image);
+            $manager->flush();
+            return $this->redirectToRoute('app_admin_film');
+        }
+        return $this->render('admin/image/add.html.twig', [
             'form'=>$form->createView()
         ]);
     }

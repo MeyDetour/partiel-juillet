@@ -29,6 +29,9 @@ class Image
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
+    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
+    private ?Film $film = null;
+
 
 
     /**
@@ -79,6 +82,28 @@ class Image
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFilm(): ?Film
+    {
+        return $this->film;
+    }
+
+    public function setFilm(?Film $film): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($film === null && $this->film !== null) {
+            $this->film->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($film !== null && $film->getImage() !== $this) {
+            $film->setImage($this);
+        }
+
+        $this->film = $film;
+
+        return $this;
     }
 
 

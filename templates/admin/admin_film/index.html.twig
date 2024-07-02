@@ -1,0 +1,18 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Tous les films{% endblock %}
+
+{% block body %}
+    {%  for film in films %}
+        <a href="{{ path('app_admin_film_show',{'id':film.id}) }}">
+            {{ film.title }}
+            {{ film.description }}
+            {% if film.image is defined %}
+                <img src="{{ vich_uploader_asset(film.image) | imagine_filter('projet') }}"  alt="{{film.image.imageName}}">
+            {% endif %}
+
+        </a>
+
+
+    {% endfor %}
+{% endblock %}

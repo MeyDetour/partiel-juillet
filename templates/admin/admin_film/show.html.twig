@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ film.title }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_admin_film') }}">Retour</a>
+         {{ film.title }}
+            {{ film.description }}
+            {% if film.image is defined %}
+                <img src="{{ vich_uploader_asset(film.image) | imagine_filter('projet') }}"  alt="{{film.image.imageName}}">
+            {% endif %}
+
+{% endblock %}
