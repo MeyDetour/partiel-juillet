@@ -27,7 +27,10 @@ class AdminFilmController extends AbstractController
 
     #[Route('/film/show/{id}', name: 'app_admin_film_show')]
     public function show(Film $film): Response
-    {
+    { if (!$film->getImage()) {
+        return $this->redirectToRoute('admin_add_image_film', ['id' => $film->getId()]);
+
+    }
         return $this->render('admin/admin_film/show.html.twig', [
             'film' => $film
         ]);
