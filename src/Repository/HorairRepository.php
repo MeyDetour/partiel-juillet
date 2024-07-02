@@ -40,4 +40,12 @@ class HorairRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findDistinctDate(string $date): array
+    {
+        $qb = $this->createQueryBuilder('h')
+            ->select('DISTINCT h.' . $column)
+            ->getQuery();
+
+        return $qb->getResult();
+    }
 }

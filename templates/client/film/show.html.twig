@@ -4,31 +4,36 @@
 
 {% block body %}
     {% if film.image is defined %}
-        <img class="filmPageBackgroundImage" src="{{ vich_uploader_asset(film.image)  }}" alt="{{ film.image.imageName }}">
+        <img class="filmPageBackgroundImage" src="{{ vich_uploader_asset(film.image) }}"
+             alt="{{ film.image.imageName }}">
 
     {% endif %}
-<div class=filmPageBackgroundLeft"">
+    <div class="filmPageBackgroundLeft">
+        <a href="{{ path('app_home') }}" class="mb-5"><i class="bi bi-arrow-left me-2"></i>Retour</a>
+        <h1 class="mb-5">{{ film.title }}</h1>
+        <p>
+            {{ film.description }}
+        </p>
+        <span>
+  Durée :  {{ film.duration|date('H:i') }}
+    </span> <span>
+  Genre :   {% for cat in film.categories %}
+                {{ cat.name }},
+            {% endfor %}
+    </span>
 
-</div>
+        {% if film.horairs is empty %}
+            <span>Aucun horaire prévu</span>
+        {% else %}
+        <span>
+  Horaires :   {% for horaire in film.horairs %}
+                {{ horaire.hour|date('H:i') }}
+            {% endfor %}
+    </span>
+        {% endif %}
 
-    <a href="{{ path('app_home') }}">Retour</a>
-    {{ film.title }}
-    {{ film.description }}
-    {{ film.duration|date('H:i') }}
-
-
-    <div class="d-flex flex-column">
-        {% for cat in film.categories %}
-            {{ cat.name }}
-        {% endfor %}
+        <a class="button" href="{{ path('new_reservation',{'id':film.id}) }}">Reserver</a>
     </div>
-    <div class="d-flex flex-column">
-        {% for horaire in film.horairs %}
-            <a href="{{ path('admin_edit_horaire_from_film',{'id':horaire.id}) }}">Modifier</a>
-            <a href="{{ path('app_admin_horaire_remove_from_film',{'id':horaire.id}) }}">supprimer</a>
 
-            à     {{ horaire.hour|date('H:i') }}
-            salle   {{ horaire.room.name }}
-        {% endfor %}
-    </div>
+
 {% endblock %}

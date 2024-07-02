@@ -5,11 +5,15 @@ namespace App\Form;
 use App\Entity\Film;
 use App\Entity\Horair;
 use App\Entity\Room;
+use App\Entity\VoiceCategories;
 use App\Repository\FilmRepository;
 use App\Repository\RoomRepository;
+use App\Repository\VoiceCategoriesRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +22,9 @@ class HorairType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
+->add('date',DateType::class,[
+    'label'=>"Choisissez le jour de la séance"
+])
             ->add('hour', ChoiceType::class, [
                 'choices' => [
                     '10:30' => new \DateTime('10:30'),
@@ -42,6 +48,18 @@ class HorairType extends AbstractType
                         ->orderBy('u.title', 'ASC');
                 },
                 'choice_label' => 'title',
+                'multiple' => false,
+                'expanded' => false,
+                'required'=>false,
+            ])
+            ->add('version', EntityType::class, [
+                'label'=>'Selectionnez la version de votre film',
+                'class' => VoiceCategories::class,
+                'query_builder' => function (VoiceCategoriesRepository $repository) {
+                    return $repository->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                },
+                'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
                 'required'=>false,

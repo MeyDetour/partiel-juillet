@@ -1,0 +1,58 @@
+.profilPage .information{
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+}
+.profilPage .information div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;margin-block: 10px;
+
+}
+.profilPage .information div .data{
+    width: 35%;
+    background: var(--grincheux);
+    border-radius: 10px;
+      padding: 8px 13px;
+    height: 3em;
+}
+.profilPage .updateButton{
+    position: absolute;
+    right: 4%;
+    bottom: 10%;
+}
+.profilPage .vr{
+    height: 80vh;
+    background: var(--timide);
+    width: 3px;
+}
+.profilPage .cardsContainer{
+    height: 26vh;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    overflow-y: scroll;
+}
+  .carte{
+    background: linear-gradient(73.61deg, #1C1F20 0.27%, #2A2A2A 100.58%);
+margin: 10px;
+    width: 40%;
+    border-radius: 20px;
+    border: 2px solid #393939;
+    padding: 3% 2%;
+    font-size: 15px;
+      transition: all .5s;
+}
+#pay_methode_number{
+    letter-spacing: 6px;
+}
+.cardInput{
+    background: var(--dash);
+    padding: 10px 20px;
+    border-radius: 13px;
+    margin-block: 16px;
+}
+.carteHover:hover{
+    background: linear-gradient(200.61deg, #1C1F20 0.27%, #2A2A2A 100.58%);
+
+}

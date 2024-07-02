@@ -9,7 +9,7 @@
             {{ film.title }}
             {{ film.description }}
             {% if film.image is defined %}
-                <img src="{{ vich_uploader_asset(film.image) | imagine_filter('projet') }}"  alt="{{film.image.imageName}}">
+                <img src="{{ vich_uploader_asset(film.image) | imagine_filter('film') }}"  alt="{{film.image.imageName}}">
             {% endif %}
 
         </a>

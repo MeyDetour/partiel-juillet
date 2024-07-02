@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Room;
 use App\Entity\User;
+use App\Entity\VoiceCategories;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -45,6 +46,14 @@ class AppFixtures extends Fixture
             $cat = new Category();
             $cat->setName($theme);
             $manager->persist($cat);
+        }
+        $voice = ['VOSTFR',
+            'VO',
+            'VF'];
+        foreach ($voice as $vo) {
+            $vc = new VoiceCategories();
+            $vc->setName($vo);
+            $manager->persist($vc);
         }
         $manager->flush();
     }

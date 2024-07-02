@@ -74,6 +74,7 @@ class AdminHoraireController extends AbstractController
             }
             return $this->redirectToRoute('app_admin_film_show', ['id' => $horaire->getFilm()->getId()]);
         }
+
         return $this->render('admin/admin_film/horaire/add.html.twig', [
             'form' => $form->createView()
         ]);

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PayMethodeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,8 +22,21 @@ class PayMethode
     #[ORM\Column]
     private ?int $number = null;
 
+
+
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $address = null;
+    private ?string $master = null;
+
+    /**
+     * @var Collection<int, Reservation>
+     */
+    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'payement')]
+    private Collection $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
 
 
@@ -55,14 +70,45 @@ class PayMethode
         return $this;
     }
 
-    public function getAddress(): ?string
+
+    public function getMaster(): ?string
     {
-        return $this->address;
+        return $this->master;
     }
 
-    public function setAddress(string $address): static
+    public function setMaster(string $master): static
     {
-        $this->address = $address;
+        $this->master = $master;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setPayement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getPayement() === $this) {
+                $reservation->setPayement(null);
+            }
+        }
 
         return $this;
     }

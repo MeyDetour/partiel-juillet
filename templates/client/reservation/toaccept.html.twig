@@ -1,0 +1,43 @@
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Reservez !  {% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1 class="my-5">Récapitulatif </h1>
+        <div class="d-flex flex-row w-100 justify-content-around">
+            <div class="d-flex flex-column ">
+                <span>Film : {{ horaire.film.title }}</span>
+                <span>  Le  {{ horaire.date|date('Y-m-d') }} à {{ horaire.hour|date('H:i') }} en {{ horaire.version.name }}
+</span>
+                <span>Salle : {{ horaire.room.name }}</span>
+                <span>Place(s) : {{ places }}</span>
+                <span>Prix : {{ places*7.50 }}</span>
+
+
+            </div>
+            <div class="d-flex flex-column">
+                <h3>Moyen de paiement : </h3>
+                <div class="carte carteHover">
+                    <div class="d-flex flex-column">
+                        <span>Numéro de la carte : </span>
+                        <span class="cardInput">
+                                   {{ payMethode.number }}
+                              </span>
+                    </div>
+
+                    <div class="d-flex flex-column">
+                        <span>Propriétaire : </span>
+                        <span class="cardInput">
+                                   {{ payMethode.master }}
+                              </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="button" href="{{ path('to_reserve',{'id':horaire.id,'places':places,'payMethodeId':payMethode.id}) }}">Acheter</a>
+
+    </div>
+{% endblock %}

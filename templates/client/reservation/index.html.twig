@@ -1,0 +1,21 @@
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Reservez !  {% endblock %}
+
+{% block body %}
+    <div class="container">
+
+    <h1 class="my-5">Réserver pour le </h1>
+    <div class="d-flex flex-row">
+
+        {% for datum in data %}
+            <a class="reservationDateCard" href="{{ path('to_reserve_place',{'id':datum.id}) }}">
+              Le  {{datum.date|date('Y-m-d')  }} à {{ datum.hour|date('H:i') }} en {{ datum.version.name }}
+
+            </a>
+
+        {% endfor %}
+    </div>
+
+    </div>
+{% endblock %}

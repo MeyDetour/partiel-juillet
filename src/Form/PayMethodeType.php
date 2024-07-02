@@ -19,10 +19,19 @@ class PayMethodeType extends AbstractType
         $builder
             ->add('number', IntegerType::class, [
                 'label' => "Votre numéro de carte",
-            ])
-            ->add('address', TextType::class, [
-                'label' => "Entrez votre adresse de facturation"
+                'attr'=>[
+
+                    'className' => 'cardInput'
+                ]
+            ])->add('master', TextType::class, [
+                'label' => "Nom du propriétaire",
+                'attr'=>[
+
+                    'className' => 'cardInput'
+                ]
             ]);
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

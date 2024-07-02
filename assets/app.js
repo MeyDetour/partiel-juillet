@@ -8,5 +8,7 @@ import './bootstrap.js';
 import './styles/app.css';
 import './styles/client/home.css'
 import './styles/client/film.css'
+import './styles/client/profil.css'
+import './styles/client/reservation.css'
 import '/bootstrap/dist/css/bootstrap.min.css';
 
