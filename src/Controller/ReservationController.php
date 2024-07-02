@@ -78,18 +78,17 @@ class ReservationController extends AbstractController
         $dateOfSeance->setTime($horaire->getHour()->format('H'), $horaire->getHour()->format('i'), $horaire->getHour()->format('s'));
 
         $today = new \DateTime();
+        $interval = $dateOfSeance->diff($today);
 
-        $interval = $dateOfSeance->getTimestamp() - $today->getTimestamp();
+        if ($interval->days == 0 && $interval->h == 0 && $interval->i < 10) {
 
-        $minutes = $interval / 60;
+            dd('impossible de supprimer la reservation, elle commence dans 10 mion ! ');
 
-        if ($minutes < 10) {
-            $manager->remove($reservation);
-            $manager->flush();
-            return $this->redirectToRoute('app_profil');
+            return $this->redirectToRoute('app_home');
         }
-        dd('impossible de supprimer la reservation, elle commence dans 10 mion ! ');
-        return $this->redirectToRoute('app_home');
+        $manager->remove($reservation);
+        $manager->flush();
+        return $this->redirectToRoute('app_profil');
     }
 
 }

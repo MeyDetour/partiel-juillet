@@ -18,6 +18,10 @@
                         <a class=" button" href="{{ path('app_profil') }}" >
                             Profil
                         </a>
+                    </li>   <li class="ms-1 nav-item">
+                        <a class=" button" href="{{ path('app_logout') }}" >
+                            Deconnexion
+                        </a>
                     </li>
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
