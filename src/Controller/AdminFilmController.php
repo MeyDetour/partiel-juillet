@@ -40,7 +40,7 @@ class AdminFilmController extends AbstractController
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $film->setDuration( new \DateTime('2:30'));
+            $film->setDuration(new \DateTime('2:30'));
             $manager->persist($film);
             $manager->flush();
             return $this->redirectToRoute('admin_add_image_film', ['id' => $film->getId()]);
@@ -53,7 +53,10 @@ class AdminFilmController extends AbstractController
     #[Route('/film/edit/{id}', name: 'admin_edit_film')]
     public function edit(Request $request, EntityManagerInterface $manager, Film $film): Response
     {
+        if (!$film->getImage()) {
+            return $this->redirectToRoute('admin_add_image_film', ['id' => $film->getId()]);
 
+        }
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
