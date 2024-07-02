@@ -1,3 +1,34 @@
+:root{
+    --dash :#131313;
+    --simplet :#609292;
+    --timide :#D3DBDE;
+    --grincheux : #1C1F20;
+    --white : #FFFFFF;
+}
+
 body{
     overflow-x: hidden;
+font-size: 20px;
+
+    color: var(--white);
+}
+
+.bodyClient{
+    background: var(--dash);
+}
+
+
+.button{
+    padding: 9px 33px !important;
+    background: var(--simplet);
+    color: var(--timide);
+    border-radius: 10px;
+}
+a{
+    color: var(--white);
+    text-decoration: none;
+}
+
+h3{
+    font-size: 35px;
 }

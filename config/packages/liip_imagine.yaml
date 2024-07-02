@@ -8,10 +8,10 @@ liip_imagine:
 
     filter_sets:
          cache: ~
-         projet:
+         film:
              quality: 45
              filters:
-                 thumbnail: { size: [900, 400], mode: outbound }
+                 thumbnail: { size: [600, 320], mode: outbound }
 
          icone:
              quality: 80

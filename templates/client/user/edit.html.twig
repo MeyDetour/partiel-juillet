@@ -1,0 +1,13 @@
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Modifiez votre profil{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_profil') }}">Annuler</a>
+    {% if app.user %}
+        {{ form_start(form) }}
+        {{ form_row(form.email) }}
+         <button type="submit" class="btn btn-primary">Créer</button>
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+    <a href="">Ajouter une catégorie</a>
+
+    <div class="d-flex flex-column">
+        {% for cat in categories %}
+            <div class="d-flex fl border-dark">
+                <a href="{{ path('admin_edit_category',{'id':cat.id}) }}">Modifier</a>
+                <a href="{{ path('app_admin_category_remove',{'id':cat.id}) }}">Supprimer</a>
+                {{ cat.name }}
+                <span>
+     Films associés     {{ cat.films|length }}
+    </span>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

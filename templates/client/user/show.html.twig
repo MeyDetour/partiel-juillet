@@ -3,6 +3,8 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_profil_edit') }}">Modifier mes informations</a>
+    <a href="{{ path('app_home') }}">Retour</a>
     {% if app.user %}
         {{ app.user.email }}
     {% endif %}

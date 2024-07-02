@@ -1,20 +1,26 @@
 {% extends 'client/base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}le Terrine Bellecour{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <h1 class="BackgroundTitle">Le Terrine Bellecour</h1>
+        <div class="blurBackground">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/mey/Documents/symfonyProject/partiel-juillet/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/home/mey/Documents/symfonyProject/partiel-juillet/templates/home/index.html.twig</code></li>
-    </ul>
+        </div>
+<div class="homePage px-5 ">
+<div class="d-flex flex-row justify-content-between">
+    <h3 class="mb-5">Films à l'affiche</h3>
+    <a href="{{ path('app_film') }}">Voir tous les films <i class="ms-2 bi bi-arrow-right"></i></a>
+</div>
+        <div class="films">
+                {% for film in films %}
+                        <a class="film" href="{{ path('film_show',{'id':film.id}) }}">
+
+                                <img src="{{ vich_uploader_asset(film.image)| imagine_filter('film') }}" alt="{{ film.image.imageName }}">
+
+                        </a>
+               {% endfor %}
+        </div>
 </div>
 {% endblock %}

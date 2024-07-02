@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FilmRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -9,13 +10,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(FilmRepository $filmRepository): Response
     {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
-        }
+
         return $this->render('client/home/index.html.twig', [
-            'controller_name' => 'HomeController',
+'films'=>$filmRepository->findAll()
         ]);
     }
 }

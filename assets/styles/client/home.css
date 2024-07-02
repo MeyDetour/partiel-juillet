@@ -1,0 +1,67 @@
+.mainNavbar {
+    background: transparent;
+}
+
+.mainNavbar .searchForm input {
+    background: var(--grincheux);
+    border: 0;
+    width: 40vw;
+    padding: 11px 43px;
+}
+
+.mainNavbar .searchForm button {
+    border: var(--grincheux);
+    color: var(--timide);
+}
+
+.mainNavbar .searchForm input::placeholder {
+
+    color: #454B4C;
+}
+
+.BackgroundTitle{
+
+    background: -webkit-linear-gradient(84.95deg, rgba(50, 50, 50, 0.4) -5.18%, rgba(152, 152, 152, 0.4) 120.46%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 353px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    text-transform: uppercase;
+
+    z-index: -2;
+}
+.blurBackground {
+    z-index: -1;
+    width: 100vw;
+    height: 79vh;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    backdrop-filter: blur(6px);
+    border-top: 1px solid #414141;
+}
+.homePage{
+    margin-top: 18vh ;
+}
+.homePage h3{
+    width: fit-content;
+}
+.homePage .films{
+    display: flex;flex-direction: row;flex-wrap: wrap;
+
+}
+.homePage .film{
+    display: flex;
+    justify-content: center;
+    width: 32% !important;
+    height: 34vh;
+}
+.homePage .film img{
+   height: 100%;
+    width: 100%;
+    object-fit: cover;
+margin-inline: 3vw;
+    border-radius: 20px;
+}

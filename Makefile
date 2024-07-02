@@ -18,6 +18,8 @@ init: ## Initialize project
 
 
 ## -------- SYMFONY COMMAND --------
+compile :
+	$(SYMFONY_CONSOLE) asset-map:compile
 entity:
 	$(SYMFONY_CONSOLE) make:entity
 controller:

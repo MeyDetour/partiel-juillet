@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PayMethodeRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PayMethodeRepository::class)]
@@ -19,8 +20,11 @@ class PayMethode
     #[ORM\Column]
     private ?int $number = null;
 
-    #[ORM\ManyToOne(inversedBy: 'payMEthodes')]
-    private ?Address $address = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $address = null;
+
+
+
 
     public function getId(): ?int
     {
@@ -51,15 +55,19 @@ class PayMethode
         return $this;
     }
 
-    public function getAddress(): ?Address
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    public function setAddress(?Address $address): static
+    public function setAddress(string $address): static
     {
         $this->address = $address;
 
         return $this;
     }
+
+
+
+
 }

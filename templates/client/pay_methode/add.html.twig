@@ -1,0 +1,12 @@
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Vos moyens de payements{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_pay_methode') }}">Annuler</a>
+    {{ form_start(form) }}
+    {{ form_row(form.number) }}
+    {{ form_row(form.address) }}
+    <button type="submit" class="btn btn-primary">Créer</button>
+    {{ form_end(form) }}
+{% endblock %}

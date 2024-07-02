@@ -1,18 +1,21 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'client/base.html.twig' %}
 
 {% block title %}{{ film.title }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_admin_film') }}">Retour</a>
-    <a href="{{ path('admin_edit_film',{'id':film.id}) }}">Modifier</a>
-    <a href="{{ path('app_admin_film_remove',{'id':film.id}) }}">Supprimer</a>
-    <a href="{{ path('admin_add_horaire_to_film',{'id':film.id}) }}">Ajouter une séance</a>
+    {% if film.image is defined %}
+        <img class="filmPageBackgroundImage" src="{{ vich_uploader_asset(film.image)  }}" alt="{{ film.image.imageName }}">
+
+    {% endif %}
+<div class=filmPageBackgroundLeft"">
+
+</div>
+
+    <a href="{{ path('app_home') }}">Retour</a>
     {{ film.title }}
     {{ film.description }}
     {{ film.duration|date('H:i') }}
-    {% if film.image is defined %}
-        <img src="{{ vich_uploader_asset(film.image) | imagine_filter('projet') }}" alt="{{ film.image.imageName }}">
-    {% endif %}
+
 
     <div class="d-flex flex-column">
         {% for cat in film.categories %}

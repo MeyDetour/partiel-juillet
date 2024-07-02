@@ -8,3 +8,8 @@
 -> salles
 -> 7.50 prix
 -> 2h15 seance pas de chevauchement
+
+
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Vos moyens de payements{% endblock %}

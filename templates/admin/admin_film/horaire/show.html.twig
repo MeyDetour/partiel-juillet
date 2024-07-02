@@ -1,0 +1,21 @@
+{% extends '../../base.html.twig' %}
+
+{% block title %}{{ film.title }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_admin_film') }}">Retour</a>
+    <a href="{{ path('admin_edit_film',{'id':film.id}) }}">Modifier</a>
+    <a href="{{ path('app_admin_film_remove',{'id':film.id}) }}">Supprimer</a>
+    {{ film.title }}
+    {{ film.description }}
+    {% if film.image is defined %}
+        <img src="{{ vich_uploader_asset(film.image) | imagine_filter('projet') }}" alt="{{ film.image.imageName }}">
+    {% endif %}
+
+    <div class="d-flex flex-column">
+        {% for cat in film.categories  %}
+            {{ cat.name }}
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Les salles du cinéma{% endblock %}
+
+{% block body %}
+    <a href="{{ path('admin_add_room') }}">Ajouter une salle</a>
+    {% for room in rooms %}
+        <a href="{{ path('admin_edit_room',{'id':room.id}) }}">modifier</a>
+        <a href="{{ path('app_admin_room_remove',{'id':room.id}) }}">supprimer</a>
+        {{ room.name }}
+        {{ room.places }}
+    {% endfor %}
+{% endblock %}

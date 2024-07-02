@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Toutes les séances{% endblock %}
+
+{% block body %}
+    <a href="{{ path('admin_add_horaire') }}">Ajouter une séance</a>
+    {%  for horaire in horaires %}
+        <a href="{{ path('admin_edit_horaire',{'id':horaire.id}) }}">Modifier</a>
+        <a href="{{ path('app_admin_horaire_remove',{'id':horaire.id}) }}">supprimer</a>
+        {{ horaire.hour|date("H:i") }}
+        {{ horaire.film.title }}
+
+    {% endfor %}
+{% endblock %}

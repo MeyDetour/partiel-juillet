@@ -1,0 +1,13 @@
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Vos moyens de payements{% endblock %}
+
+{% block body %}
+    <a href="{{ path('add_pay_methode') }}">Ajouter une moyen de paiement</a>
+    {% for methode in methodes %}
+        {{ methode.number }}
+        {{ methode.address }}
+        <a href="{{ path('pay_methode_remove',{'id':methode.id}) }}">Supprimer</a>
+        <a href="{{ path('edit_pay_methode',{'id':methode.id}) }}">Modifier</a>
+    {% endfor %}
+{% endblock %}

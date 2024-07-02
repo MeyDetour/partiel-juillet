@@ -3,6 +3,7 @@
 {% block title %}Tous les films{% endblock %}
 
 {% block body %}
+    <a href="{{ path('admin_add_film') }}">Ajouter</a>
     {%  for film in films %}
         <a href="{{ path('app_admin_film_show',{'id':film.id}) }}">
             {{ film.title }}
