@@ -25,14 +25,15 @@
         {% if film.horairs is empty %}
             <span>Aucun horaire prévu</span>
         {% else %}
-        <span>
+            <span>
   Horaires :   {% for horaire in film.horairs %}
-                {{ horaire.hour|date('H:i') }}
-            {% endfor %}
+                    {{ horaire.hour|date('H:i') }}
+                {% endfor %}
+                    <a class="button" href="{{ path('new_reservation',{'id':film.id}) }}">Reserver</a>
+
     </span>
         {% endif %}
 
-        <a class="button" href="{{ path('new_reservation',{'id':film.id}) }}">Reserver</a>
     </div>
 
 
