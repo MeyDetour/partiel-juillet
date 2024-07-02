@@ -29,7 +29,7 @@ class AdminHoraireController extends AbstractController
 
     #[Route('/horaire/new', name: 'admin_add_horaire')]
     #[Route('/horaire/film/{id}/new', name: 'admin_add_horaire_to_film')]
-    public function new(Request $request, EntityManagerInterface $manager, ?Film $film, FilmRepository $filmRepository): Response
+    public function new(Request $request, EntityManagerInterface $manager, ?Film $film, FilmRepository $filmRepository, HorairRepository $horairRepository): Response
     {
         $route = $request->attributes->get('_route');
 
@@ -37,19 +37,26 @@ class AdminHoraireController extends AbstractController
             return $this->redirectToRoute('app_admin_film');
         }
 
-
         $horaire = new Horair();
         $form = $this->createForm(HorairType::class, $horaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($horaire);
-            $manager->flush();
 
-            if ($route == 'admin_add_horaire') {
+          if($horairRepository->findBy(['room'=>$horaire->getRoom(),'hour'=>$horaire->getHour(),'date'=>$horaire->getDate()])) {
+              dd('il y a deja une seance a cette horaire');
+          }
+          else{
+              $manager->persist($horaire);
+              $manager->flush();
 
-                return $this->redirectToRoute('app_admin_horaire');
-            }
-            return $this->redirectToRoute('app_admin_film_show', ['id' => $film->getId()]);
+              if ($route == 'admin_add_horaire') {
+
+                  return $this->redirectToRoute('app_admin_horaire');
+              }
+              return $this->redirectToRoute('app_admin_film_show', ['id' => $film->getId()]);
+
+          }
+
 
         }
         return $this->render('admin/admin_film/horaire/add.html.twig', [
