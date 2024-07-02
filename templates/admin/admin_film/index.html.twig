@@ -4,16 +4,20 @@
 
 {% block body %}
     <a href="{{ path('admin_add_film') }}">Ajouter</a>
-    {%  for film in films %}
-        <a href="{{ path('app_admin_film_show',{'id':film.id}) }}">
-            {{ film.title }}
-            {{ film.description }}
-            {% if film.image is defined %}
-                <img src="{{ vich_uploader_asset(film.image) | imagine_filter('film') }}"  alt="{{film.image.imageName}}">
-            {% endif %}
 
-        </a>
+    <div class="d-flex flex-row flex-wrap">
 
 
-    {% endfor %}
+        {% for film in films %}
+
+            <div class="case">
+                <a href="{{ path('app_admin_film_show',{'id':film.id}) }}">
+                    {{ film.title }}
+                    {{ film.description }}
+
+
+                </a></div>
+
+
+        {% endfor %}</div>
 {% endblock %}

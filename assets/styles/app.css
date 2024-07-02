@@ -25,6 +25,7 @@ font-size: 20px;
     padding: 9px 33px !important;
     background: var(--simplet);
     color: var(--timide);
+    width: fit-content;
     border-radius: 10px;
 }
 a{
@@ -59,4 +60,14 @@ h3{
 .mainNavbar .searchForm input::placeholder {
 
     color: #454B4C;
+}
+.case{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 2px solid white;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 4px;
+    margin: 10px;
 }

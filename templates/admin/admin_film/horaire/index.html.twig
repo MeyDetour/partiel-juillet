@@ -4,12 +4,16 @@
 
 {% block body %}
     <a href="{{ path('admin_add_horaire') }}">Ajouter une séance</a>
+
     {%  for horaire in horaires %}
-        <a href="{{ path('admin_edit_horaire',{'id':horaire.id}) }}">Modifier</a>
-        <a href="{{ path('app_admin_horaire_remove',{'id':horaire.id}) }}">supprimer</a>
-        {{ horaire.date|date("Y-m-d") }}
-        {{ horaire.hour|date("H:i") }}
-        {{ horaire.film.title }}
+        <div class="d-flex flex-column p-2 border-dark case">
+            <a class="button m-1" href="{{ path('admin_edit_horaire',{'id':horaire.id}) }}">Modifier</a>
+            <a class="button m-1" href="{{ path('app_admin_horaire_remove',{'id':horaire.id}) }}">supprimer</a>
+            {{ horaire.date|date("Y-m-d") }}
+            {{ horaire.hour|date("H:i") }}
+            {{ horaire.film.title }}
+        </div>
+
 
     {% endfor %}
 {% endblock %}

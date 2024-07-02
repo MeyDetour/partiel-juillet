@@ -5,11 +5,11 @@
 {% block body %}
     <a href="{{ path('admin_add_voice') }}">Ajouter une version</a>
 
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-rox flex-wrap">
         {% for cat in categories %}
-            <div class="d-flex fl border-dark">
-                <a href="{{ path('admin_edit_voice',{'id':cat.id}) }}">Modifier</a>
-                <a href="{{ path('app_admin_voice_remove',{'id':cat.id}) }}">Supprimer</a>
+            <div class="d-flex fl border-dark case">
+                <a class="button m-1" href="{{ path('admin_edit_voice',{'id':cat.id}) }}">Modifier</a>
+                <a class="button m-1" href="{{ path('app_admin_voice_remove',{'id':cat.id}) }}">Supprimer</a>
                 {{ cat.name }}
 
             </div>

@@ -3,29 +3,35 @@
 {% block title %}{{ film.title }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_admin_film') }}">Retour</a>
-    <a href="{{ path('admin_edit_film',{'id':film.id}) }}">Modifier</a>
-    <a href="{{ path('app_admin_film_remove',{'id':film.id}) }}">Supprimer</a>
-    <a href="{{ path('admin_add_horaire_to_film',{'id':film.id}) }}">Ajouter une séance</a>
-    {{ film.title }}
-    {{ film.description }}
-    {{ film.duration|date('H:i') }}
-    {% if film.image is defined %}
-        <img src="{{ vich_uploader_asset(film.image) | imagine_filter('film') }}" alt="{{ film.image.imageName }}">
-    {% endif %}
-
     <div class="d-flex flex-column">
-        {% for cat in film.categories %}
-            {{ cat.name }}
-        {% endfor %}
+        <a class="button m-1" href="{{ path('app_admin_film') }}">Retour</a>
+        <a class="button m-1" href="{{ path('admin_edit_film',{'id':film.id}) }}">Modifier</a>
+        <a class="button m-1" href="{{ path('app_admin_film_remove',{'id':film.id}) }}">Supprimer</a>
+        <a class="button m-1" href="{{ path('admin_add_horaire_to_film',{'id':film.id}) }}">Ajouter une séance</a>
+
     </div>
-    <div class="d-flex flex-column">
-        {% for horaire in film.horairs %}
-            <a href="{{ path('admin_edit_horaire_from_film',{'id':horaire.id}) }}">Modifier</a>
-            <a href="{{ path('app_admin_horaire_remove_from_film',{'id':horaire.id}) }}">supprimer</a>
 
-            à     {{ horaire.hour|date('H:i') }}
-            salle   {{ horaire.room.name }}
-        {% endfor %}
+    <div class="case">
+        {{ film.title }}
+        {{ film.description }}
+        {{ film.duration|date('H:i') }}
+        {% if film.image is defined %}
+            <img src="{{ vich_uploader_asset(film.image) | imagine_filter('film') }}" alt="{{ film.image.imageName }}">
+        {% endif %}
+
+        <div class="d-flex flex-column">
+            {% for cat in film.categories %}
+                {{ cat.name }}
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-column">
+            {% for horaire in film.horairs %}
+                <a href="{{ path('admin_edit_horaire_from_film',{'id':horaire.id}) }}">Modifier</a>
+                <a href="{{ path('app_admin_horaire_remove_from_film',{'id':horaire.id}) }}">supprimer</a>
+
+                à     {{ horaire.hour|date('H:i') }}
+                salle   {{ horaire.room.name }}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

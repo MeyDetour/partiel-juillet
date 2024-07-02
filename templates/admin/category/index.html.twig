@@ -5,11 +5,11 @@
 {% block body %}
     <a href="{{ path('app_admin_category') }}">Ajouter une catégorie</a>
 
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-row flex-wrap">
         {% for cat in categories %}
-            <div class="d-flex fl border-dark">
-                <a href="{{ path('admin_edit_category',{'id':cat.id}) }}">Modifier</a>
-                <a href="{{ path('app_admin_category_remove',{'id':cat.id}) }}">Supprimer</a>
+            <div class="d-flex fl border-dark case">
+                <a class="button m-1" href="{{ path('admin_edit_category',{'id':cat.id}) }}">Modifier</a>
+                <a class="button m-1" href="{{ path('app_admin_category_remove',{'id':cat.id}) }}">Supprimer</a>
                 {{ cat.name }}
                 <span>
      Films associés     {{ cat.films|length }}
