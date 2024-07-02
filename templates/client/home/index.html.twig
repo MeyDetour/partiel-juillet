@@ -15,11 +15,13 @@
 </div>
         <div class="films">
                 {% for film in films %}
+                    {% if film.image != null %}
                         <a class="film mr-2" href="{{ path('film_show',{'id':film.id}) }}">
 
                                 <img src="{{ vich_uploader_asset(film.image)| imagine_filter('film') }}" alt="{{ film.image.imageName }}">
 
                         </a>
+                    {% endif %}
                {% endfor %}
         </div>
 </div>
